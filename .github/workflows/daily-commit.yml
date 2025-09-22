@@ -2,7 +2,7 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: "0 12 * * *"
+    - cron: "0 12 * * *" # كل يوم 12:00 UTC
   workflow_dispatch:
 
 permissions:
@@ -21,8 +21,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "0xdya"
+          git config --global user.email "0xdya@proton.me"
           git add .
           git commit -m "Daily commit $(date)" || echo "No changes"
           git push origin HEAD:main
