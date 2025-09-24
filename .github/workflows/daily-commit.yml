@@ -15,16 +15,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Make a change
-        run: |
-          date >> daily.log
-
-      - name: Commit changes
+      - name: Make 10 commits
         run: |
           git config --global user.name "0xdya"
           git config --global user.email "0xdya@proton.me"
-          git add .
-          git commit -m "Daily commit $(date)" || echo "No changes"
+          for i in {1..10}; do
+            echo "$(date) - $i" >> daily.log
+            git add daily.log
+            git commit -m "Daily commit $i at $(date)"
+          done
           git push origin HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
